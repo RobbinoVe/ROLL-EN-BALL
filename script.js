@@ -23,6 +23,20 @@ document.addEventListener("DOMContentLoaded", function() {
             case 'ArrowRight':
                 ball.style.left = (ballLeft + 10) + 'px';
                 break;
+            // Controleer winvoorwaarde
+        if (checkCollision(ball, goal)) {
+            alert('Gefeliciteerd! Je hebt gewonnen!');
         }
+    });
 
-Vervolg code zie volgende pagina
+    // Controleer of de bal het doel bereikt
+    function checkCollision(ball, goal) {
+        const ballRect = ball.getBoundingClientRect();
+        const goalRect = goal.getBoundingClientRect();
+        return !(ballRect.right < goalRect.left || 
+                 ballRect.left > goalRect.right || 
+                 ballRect.bottom < goalRect.top || 
+                 ballRect.top > goalRect.bottom);
+    }
+});
+
